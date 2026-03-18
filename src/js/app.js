@@ -26,10 +26,10 @@ function renderExpenses(listElement, expensesArray) {
         const deleteBtn = document.createElement("button");
         deleteBtn.textContent = "X";
 
-        deleteBtn.addEventListener("click", () => {
-            removeExpense(index);
-        });
-
+    deleteBtn.addEventListener("click", () => {
+        expenses = removeExpense(expenses, index);
+        renderExpenses(list, expenses);
+    });
         li.appendChild(deleteBtn);
         listElement.appendChild(li);
     });
@@ -51,9 +51,7 @@ function handleAddExpense() {
     clearExpenseInput();
 }
 
-function removeExpense(index) {
-    expenses = expenses.filter((_, i) => i !== index);
-    renderExpenses(list, expenses);
+function removeExpense(expensesArray, index) {
+    return expensesArray.filter((_, i) => i !== index);
 }
-
 button.addEventListener("click", handleAddExpense);
