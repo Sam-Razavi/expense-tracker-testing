@@ -2,15 +2,44 @@ const input = document.getElementById("expenseInput");
 const button = document.getElementById("addBtn");
 const list = document.getElementById("expenseList");
 
-button.addEventListener("click", () => {
-    const value = input.value;
+let expenses = [];
 
-    if (value === "") return;
+function getExpenseInput() {
+    return input.value.trim();
+}
 
-    const li = document.createElement("li");
-    li.textContent = value;
+function addExpense(expensesArray, value) {
+    if (!value) {
+        return expensesArray;
+    }
 
-    list.appendChild(li);
+    return [...expensesArray, value];
+}
 
+function renderExpenses(listElement, expensesArray) {
+    listElement.innerHTML = "";
+
+    expensesArray.forEach((expense) => {
+        const li = document.createElement("li");
+        li.textContent = expense;
+        listElement.appendChild(li);
+    });
+}
+
+function clearExpenseInput() {
     input.value = "";
-});
+}
+
+function handleAddExpense() {
+    const value = getExpenseInput();
+
+    if (!value) {
+        return;
+    }
+
+    expenses = addExpense(expenses, value);
+    renderExpenses(list, expenses);
+    clearExpenseInput();
+}
+
+button.addEventListener("click", handleAddExpense);
