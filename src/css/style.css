@@ -1,0 +1,73 @@
+body {
+  font-family: Arial;
+  background: #0e0e12;
+  color: white;
+  margin: 0;
+}
+
+/* .container → main (HTML uses <main>, not .container) */
+main {
+  max-width: 700px;
+  margin: auto;
+  padding: 20px;
+}
+
+/* Titles */
+h1, h2 {
+  margin-bottom: 10px;
+}
+
+/* Form — HTML has no <form>, inputs are inside <section> */
+section {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 4px;
+  margin-top: 10px;
+}
+
+input, select, button {
+  padding: 8px;
+  border-radius: 6px;
+  border: none;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+button {
+  background: #E8927C;
+  cursor: pointer;
+  margin-top: 10px;
+  width: auto;
+}
+
+/* List */
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  background: #1a1a20;
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+li button {
+  background: #e85c5c;
+  margin-top: 0;
+}
+
+/* Summary — HTML has no .summary class, last <section> is the summary */
+section:last-of-type {
+  margin-top: 20px;
+  background: #1a1a20;
+  padding: 15px;
+  border-radius: 10px;
+}
