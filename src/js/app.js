@@ -19,9 +19,18 @@ function addExpense(expensesArray, value) {
 function renderExpenses(listElement, expensesArray) {
     listElement.innerHTML = "";
 
-    expensesArray.forEach((expense) => {
+    expensesArray.forEach((expense, index) => {
         const li = document.createElement("li");
         li.textContent = expense;
+
+        const deleteBtn = document.createElement("button");
+        deleteBtn.textContent = "X";
+
+        deleteBtn.addEventListener("click", () => {
+            removeExpense(index);
+        });
+
+        li.appendChild(deleteBtn);
         listElement.appendChild(li);
     });
 }
@@ -40,6 +49,11 @@ function handleAddExpense() {
     expenses = addExpense(expenses, value);
     renderExpenses(list, expenses);
     clearExpenseInput();
+}
+
+function removeExpense(index) {
+    expenses = expenses.filter((_, i) => i !== index);
+    renderExpenses(list, expenses);
 }
 
 button.addEventListener("click", handleAddExpense);
