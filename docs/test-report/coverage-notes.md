@@ -21,3 +21,11 @@ grouping by category
 grouping by date
 
 The lower total coverage is expected at this stage because most DOM/UI-related code is not yet covered by tests.
+
+## Updated observation
+Additional edge-case tests were added for:
+- empty arrays
+- missing title
+- grouping edge cases
+
+The overall coverage percentage did not increase noticeably, because the uncovered part of the file is mainly DOM/UI-related code in `app.js`. The current automated tests focus on pure logic functions, which are the most suitable part for unit testing in this project stage.
