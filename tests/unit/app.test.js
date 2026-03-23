@@ -175,3 +175,32 @@ test("should group expenses by date and sum the amounts", () => {
         "2026-03-21": 30,
     });
 });
+
+test("should return 0 when calculating total for an empty array", () => {
+    const result = calculateTotal([]);
+
+    expect(result).toBe(0);
+});
+
+test("should return an empty object when grouping by category with an empty array", () => {
+    const result = groupExpensesByCategory([]);
+
+    expect(result).toEqual({});
+});
+
+test("should return an empty object when grouping by date with an empty array", () => {
+    const result = groupExpensesByDate([]);
+
+    expect(result).toEqual({});
+});
+
+test("should return false for an expense with missing title", () => {
+    const expense = {
+        title: "",
+        amount: 45,
+        category: "Food",
+        date: "2026-03-20",
+    };
+
+    expect(isValidExpense(expense)).toBe(false);
+});
