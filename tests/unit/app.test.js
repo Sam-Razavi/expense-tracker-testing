@@ -109,3 +109,69 @@ test("should calculate the total amount of all expenses", () => {
 
     expect(result).toBe(75);
 });
+
+test("should group expenses by category and sum the amounts", () => {
+    const expenses = [
+        {
+            id: "1",
+            title: "Coffee",
+            amount: 45,
+            category: "Food",
+            date: "2026-03-20",
+        },
+        {
+            id: "2",
+            title: "Lunch",
+            amount: 80,
+            category: "Food",
+            date: "2026-03-20",
+        },
+        {
+            id: "3",
+            title: "Bus",
+            amount: 30,
+            category: "Transport",
+            date: "2026-03-20",
+        },
+    ];
+
+    const result = groupExpensesByCategory(expenses);
+
+    expect(result).toEqual({
+        Food: 125,
+        Transport: 30,
+    });
+});
+
+test("should group expenses by date and sum the amounts", () => {
+    const expenses = [
+        {
+            id: "1",
+            title: "Coffee",
+            amount: 45,
+            category: "Food",
+            date: "2026-03-20",
+        },
+        {
+            id: "2",
+            title: "Lunch",
+            amount: 80,
+            category: "Food",
+            date: "2026-03-20",
+        },
+        {
+            id: "3",
+            title: "Bus",
+            amount: 30,
+            category: "Transport",
+            date: "2026-03-21",
+        },
+    ];
+
+    const result = groupExpensesByDate(expenses);
+
+    expect(result).toEqual({
+        "2026-03-20": 125,
+        "2026-03-21": 30,
+    });
+});
