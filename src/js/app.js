@@ -1,55 +1,3 @@
-function isValidExpense(expense) {
-    return (
-        expense.title !== "" &&
-        Number.isFinite(expense.amount) &&
-        expense.amount > 0 &&
-        expense.category !== "" &&
-        expense.date !== ""
-    );
-}
-
-function createExpense(title, amount, category, date) {
-    return {
-        id: crypto.randomUUID(),
-        title,
-        amount,
-        category,
-        date,
-    };
-}
-
-function addExpense(expensesArray, expense) {
-    if (!isValidExpense(expense)) {
-        return expensesArray;
-    }
-
-    return [...expensesArray, expense];
-}
-
-function removeExpense(expensesArray, expenseId) {
-    return expensesArray.filter((expense) => expense.id !== expenseId);
-}
-
-function calculateTotal(expensesArray) {
-    return expensesArray.reduce((total, expense) => total + expense.amount, 0);
-}
-
-function groupExpensesByCategory(expensesArray) {
-    return expensesArray.reduce((groups, expense) => {
-        const currentTotal = groups[expense.category] || 0;
-        groups[expense.category] = currentTotal + expense.amount;
-        return groups;
-    }, {});
-}
-
-function groupExpensesByDate(expensesArray) {
-    return expensesArray.reduce((groups, expense) => {
-        const currentTotal = groups[expense.date] || 0;
-        groups[expense.date] = currentTotal + expense.amount;
-        return groups;
-    }, {});
-}
-
 if (typeof document !== "undefined") {
     const titleInput = document.getElementById("expenseTitle");
     const amountInput = document.getElementById("expenseAmount");
@@ -62,7 +10,9 @@ if (typeof document !== "undefined") {
     const categorySummaryElement = document.getElementById("categorySummary");
     const dateSummaryElement = document.getElementById("dateSummary");
 
-    let expenses = [];
+    const repository = new ExpenseRepository();
+    const expenseService = new ExpenseService(repository);
+    const summaryService = new SummaryService(repository);
 
     function getExpenseFormValues() {
         return {
@@ -86,7 +36,7 @@ if (typeof document !== "undefined") {
             deleteButton.textContent = "Delete";
 
             deleteButton.addEventListener("click", () => {
-                expenses = removeExpense(expenses, expense.id);
+                expenseService.removeExpense(expense.id);
                 renderAll();
             });
 
@@ -121,10 +71,11 @@ if (typeof document !== "undefined") {
     }
 
     function renderAll() {
+        const expenses = expenseService.getAllExpenses();
         renderExpenses(expenseList, expenses);
-        renderTotal(totalAmountElement, calculateTotal(expenses));
-        renderCategorySummary(categorySummaryElement, groupExpensesByCategory(expenses));
-        renderDateSummary(dateSummaryElement, groupExpensesByDate(expenses));
+        renderTotal(totalAmountElement, summaryService.calculateTotal());
+        renderCategorySummary(categorySummaryElement, summaryService.groupByCategory());
+        renderDateSummary(dateSummaryElement, summaryService.groupByDate());
     }
 
     function clearExpenseForm() {
@@ -136,36 +87,24 @@ if (typeof document !== "undefined") {
 
     function handleAddExpense() {
         const values = getExpenseFormValues();
-        const newExpense = createExpense(
+
+        const newExpense = expenseService.createExpense(
             values.title,
             values.amount,
             values.category,
             values.date
         );
 
-        const updatedExpenses = addExpense(expenses, newExpense);
+        const success = expenseService.addExpense(newExpense);
 
-        if (updatedExpenses === expenses) {
+        if (!success) {
             alert("Please fill in all fields correctly.");
             return;
         }
 
-        expenses = updatedExpenses;
         renderAll();
         clearExpenseForm();
     }
 
     addButton.addEventListener("click", handleAddExpense);
-}
-
-if (typeof module !== "undefined" && module.exports) {
-    module.exports = {
-        isValidExpense,
-        createExpense,
-        addExpense,
-        removeExpense,
-        calculateTotal,
-        groupExpensesByCategory,
-        groupExpensesByDate,
-    };
 }
