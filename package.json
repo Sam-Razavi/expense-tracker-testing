@@ -1,0 +1,27 @@
+{
+  "name": "expense-tracker-testing",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs",
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sam-Razavi/expense-tracker-testing.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Sam-Razavi/expense-tracker-testing/issues"
+  },
+  "homepage": "https://github.com/Sam-Razavi/expense-tracker-testing#readme",
+  "devDependencies": {
+    "jest": "^30.3.0"
+  }
+}
