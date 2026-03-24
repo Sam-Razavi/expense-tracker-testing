@@ -26,11 +26,21 @@ The project is used as a test object to apply systematic software testing and qu
 - HTML
 - CSS
 - JavaScript
+- Node.js
 - Jest for unit testing
 - Git and GitHub for version control and collaboration
+- Lizard for cyclomatic complexity analysis
 
 ## Project Structure
-Open src/index.html in a browser.
+The application is built using a class-based structure to improve modularity and testability.  
+The main components are:
+
+- `Expense` – represents an expense object
+- `ExpenseRepository` – handles storage and retrieval of expenses
+- `ExpenseService` – contains validation and expense management logic
+- `SummaryService` – handles calculations and summaries
+
+Dependencies are handled through **dependency injection**, which makes the logic easier to test and supports mocking in unit tests.
 
 ## How to Run the Tests
 
@@ -46,18 +56,45 @@ Run tests with coverage:
 
 npx jest --coverage
 
-#### Testing
+Run cyclomatic complexity analysis with Lizard:
+
+python -m lizard src
+
+If Lizard is not installed:
+
+python -m pip install lizard
+
+## Testing
 
 The project includes:
 
-Unit tests for core logic functions
-Edge-case tests
+Unit tests for core business logic
 Manual UI test cases
+Mock-based testing for isolated service testing
 Test plan
 Test cases
+Manual test cases
 Test report
 Traceability matrix
-Code coverage notes
+Code coverage analysis
+Cyclomatic complexity analysis
+
+### Test Summary
+The current automated test results are:
+
+Test suites: 2
+Total tests: 11
+Passed tests: 11
+Failed tests: 0
+
+Code coverage results:
+
+Statements: 89.18%
+Branches: 79.31%
+Functions: 94.44%
+Lines: 88.88%
+
+Cyclomatic complexity results from Lizard show that most functions have very low complexity, with an average CCN of 1.2 and no exceeded thresholds.
 
 ## Git Workflow
 
@@ -79,22 +116,29 @@ expense-tracker-testing/
 │  ├─ css/
 │  │  └─ style.css
 │  ├─ js/
-│  │  └─ app.js
+│  │  ├─ app.js
+│  │  ├─ Expense.js
+│  │  ├─ ExpenseRepository.js
+│  │  ├─ ExpenseService.js
+│  │  └─ SummaryService.js
 │  └─ index.html
 │
 ├─ tests/
 │  └─ unit/
-│     └─ app.test.js
+│     ├─ ExpenseService.test.js
+│     └─ SummaryService.test.js
 │
 ├─ docs/
-│  ├─ user-stories/
-│  ├─ test-plan/
-│  ├─ test-cases/
-│  └─ test-report/
+│  ├─ user-stories.md
+│  ├─ test-plan.md
+│  ├─ test-cases.md
+│  ├─ manual-test-cases.md
+│  ├─ test-report.md
+│  ├─ traceability-matrix.md
+│  └─ coverage-notes.md
 │
 ├─ package.json
 ├─ package-lock.json
 ├─ .gitignore
 └─ README.md
-
 
