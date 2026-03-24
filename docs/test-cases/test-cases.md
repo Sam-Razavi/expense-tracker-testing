@@ -30,44 +30,51 @@
 
 ---
 
+### TC5 – Add expense using mock repository
+**Description:** Verify that the service interacts correctly with a mocked repository.  
+**Input:** Valid expense data and a mocked repository  
+**Expected Result:** Repository add method is called and the expense is handled correctly  
+
+---
+
 ## SummaryService
 
-### TC5 – Calculate total
+### TC6 – Calculate total
 **Description:** Verify that total amount is calculated correctly.  
 **Input:** Two expenses (45 and 30)  
 **Expected Result:** Total = 75  
 
 ---
 
-### TC6 – Group by category
+### TC7 – Group by category
 **Description:** Verify grouping of expenses by category.  
 **Input:** Multiple expenses in different categories  
 **Expected Result:** Correct sum per category  
 
 ---
 
-### TC7 – Group by date
+### TC8 – Group by date
 **Description:** Verify grouping of expenses by date.  
 **Input:** Multiple expenses on different dates  
 **Expected Result:** Correct sum per date  
 
 ---
 
-### TC8 – Total with empty data
+### TC9 – Total with empty data
 **Description:** Verify total calculation with no expenses.  
 **Input:** Empty list  
 **Expected Result:** Total = 0  
 
 ---
 
-### TC9 – Group by category (empty)
+### TC10 – Group by category (empty)
 **Description:** Verify grouping by category with no expenses.  
 **Input:** Empty list  
 **Expected Result:** Empty object `{}`  
 
 ---
 
-### TC10 – Group by date (empty)
+### TC11 – Group by date (empty)
 **Description:** Verify grouping by date with no expenses.  
 **Input:** Empty list  
 **Expected Result:** Empty object `{}`  

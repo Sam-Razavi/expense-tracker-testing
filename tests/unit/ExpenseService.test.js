@@ -88,3 +88,27 @@ test("should return all expenses", () => {
     expect(result).toHaveLength(1);
     expect(result[0]).toEqual(expense);
 });
+
+test("should call repository.add when adding a valid expense", () => {
+    const mockRepository = {
+        add: jest.fn(),
+        remove: jest.fn(),
+        getAll: jest.fn(() => []),
+    };
+
+    const service = new ExpenseService(mockRepository);
+
+    const expense = {
+        id: "1",
+        title: "Coffee",
+        amount: 45,
+        category: "Food",
+        date: "2026-03-20",
+    };
+
+    const result = service.addExpense(expense);
+
+    expect(result).toBe(true);
+    expect(mockRepository.add).toHaveBeenCalledTimes(1);
+    expect(mockRepository.add).toHaveBeenCalledWith(expense);
+});
