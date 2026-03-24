@@ -17,7 +17,7 @@ Testing will be performed using:
 - Unit testing with Jest
 - Manual testing of the user interface
 
-Unit tests focus on logic functions in `app.js`, while manual testing ensures correct interaction in the UI.
+Unit tests focus on the core business logic in the class-based solution, mainly `ExpenseService` and `SummaryService`, while manual testing ensures correct interaction in the UI.
 
 ## 4. Test Environment
 - Node.js

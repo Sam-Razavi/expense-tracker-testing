@@ -1,88 +1,80 @@
 # Test Cases
 
-## TC1 – Validate correct expense input
-**Related user story:** US1  
-**Purpose:** Verify that a valid expense is accepted.  
+## ExpenseService
 
-**Test data:**  
-- Title: Coffee  
-- Amount: 45  
-- Category: Food  
-- Date: 2026-03-20  
-
-**Expected result:**  
-- `isValidExpense()` returns `true`  
-- the expense can be added to the array  
+### TC1 – Add valid expense
+**Description:** Verify that a valid expense is added successfully.  
+**Input:** Expense with valid id, title, amount, category, and date  
+**Expected Result:** Expense is added and returned in the list  
 
 ---
 
-## TC2 – Reject invalid amount
-**Related user story:** US5  
-**Purpose:** Verify that an expense with invalid amount is rejected.  
-
-**Test data:**  
-- Title: Coffee  
-- Amount: 0  
-- Category: Food  
-- Date: 2026-03-20  
-
-**Expected result:**  
-- `isValidExpense()` returns `false`  
-- the expense is not added to the array  
+### TC2 – Add invalid expense
+**Description:** Verify that an invalid expense is not added.  
+**Input:** Expense with empty title and negative amount  
+**Expected Result:** Expense is not added, function returns false  
 
 ---
 
-## TC3 – Remove expense by id
-**Related user story:** US2  
-**Purpose:** Verify that an expense can be removed correctly.  
-
-**Test data:**  
-- Expense array with two expenses  
-- Remove id: 1  
-
-**Expected result:**  
-- the returned array contains only the remaining expense  
-- the removed expense is no longer present  
+### TC3 – Remove expense
+**Description:** Verify that an expense can be removed by id.  
+**Input:** Two expenses, remove one by id  
+**Expected Result:** Only the remaining expense exists  
 
 ---
 
-## TC4 – Calculate total amount
-**Related user story:** US2  
-**Purpose:** Verify that the total amount is calculated correctly.  
-
-**Test data:**  
-- Expense 1: 45  
-- Expense 2: 30  
-
-**Expected result:**  
-- total = 75  
+### TC4 – Get all expenses
+**Description:** Verify that all stored expenses are returned.  
+**Input:** One added expense  
+**Expected Result:** List contains the added expense  
 
 ---
 
-## TC5 – Group expenses by category
-**Related user story:** US3  
-**Purpose:** Verify that expenses are grouped and summed by category.  
-
-**Test data:**  
-- Food: 45  
-- Food: 80  
-- Transport: 30  
-
-**Expected result:**  
-- Food = 125  
-- Transport = 30  
+### TC5 – Add expense using mock repository
+**Description:** Verify that the service interacts correctly with a mocked repository.  
+**Input:** Valid expense data and a mocked repository  
+**Expected Result:** Repository add method is called and the expense is handled correctly  
 
 ---
 
-## TC6 – Group expenses by date
-**Related user story:** US4  
-**Purpose:** Verify that expenses are grouped and summed by date.  
+## SummaryService
 
-**Test data:**  
-- 2026-03-20: 45  
-- 2026-03-20: 80  
-- 2026-03-21: 30  
+### TC6 – Calculate total
+**Description:** Verify that total amount is calculated correctly.  
+**Input:** Two expenses (45 and 30)  
+**Expected Result:** Total = 75  
 
-**Expected result:**  
-- 2026-03-20 = 125  
-- 2026-03-21 = 30  
+---
+
+### TC7 – Group by category
+**Description:** Verify grouping of expenses by category.  
+**Input:** Multiple expenses in different categories  
+**Expected Result:** Correct sum per category  
+
+---
+
+### TC8 – Group by date
+**Description:** Verify grouping of expenses by date.  
+**Input:** Multiple expenses on different dates  
+**Expected Result:** Correct sum per date  
+
+---
+
+### TC9 – Total with empty data
+**Description:** Verify total calculation with no expenses.  
+**Input:** Empty list  
+**Expected Result:** Total = 0  
+
+---
+
+### TC10 – Group by category (empty)
+**Description:** Verify grouping by category with no expenses.  
+**Input:** Empty list  
+**Expected Result:** Empty object `{}`  
+
+---
+
+### TC11 – Group by date (empty)
+**Description:** Verify grouping by date with no expenses.  
+**Input:** Empty list  
+**Expected Result:** Empty object `{}`  

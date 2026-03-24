@@ -1,42 +1,72 @@
 # Test Report
 
-## 1. Overview
-This report summarizes the testing performed for the expense tracker application.
+## Introduction
+The purpose of this project was to apply unit testing techniques using Jest in a JavaScript application. The goal was to test the core functionality of an expense tracking system and evaluate the quality of the tests using code coverage.
 
-## 2. Performed Testing
-The following unit-tested functions were tested with Jest:
-- `isValidExpense`
-- `addExpense`
-- `removeExpense`
-- `calculateTotal`
-- `groupExpensesByCategory`
-- `groupExpensesByDate`
+## System Under Test
+The system was refactored into a class-based structure to improve modularity and testability. The main components are:
 
-Manual UI testing is planned / has started for:
-- adding an expense through the form
-- viewing the expense list
-- viewing summaries by category
-- viewing summaries by date
+- `Expense`
+- `ExpenseRepository`
+- `ExpenseService`
+- `SummaryService`
 
-## 3. Test Results
-At this stage, the automated unit tests passed successfully.
+The services use dependency injection by receiving the repository as a dependency.
 
-- Test Suites: 1 passed
-- Tests: 8 passed
-- Tests failed: 0
+## Test Strategy
+Unit testing was performed using **Jest**. The focus was on testing the core business logic rather than UI or DOM functionality.
 
-## 4. Code Coverage
-Coverage was measured with Jest.
+The following classes were tested:
 
-- Statements: 26.02%
-- Branches: 78.94%
-- Functions: 43.47%
-- Lines: 23.94%
+- `ExpenseService`
+  - Adding valid and invalid expenses
+  - Removing expenses
+  - Retrieving all expenses
+  - Testing behavior using a mock repository
 
-## 5. Observations
-The current automated tests mainly cover the pure logic functions.  
-Most uncovered code is related to DOM/UI handling in `app.js`.
+- `SummaryService`
+  - Calculating total expenses
+  - Grouping expenses by category
+  - Grouping expenses by date
+  - Handling empty data cases
 
-## 6. Conclusion
-The tested logic functions behave as expected based on the current unit tests.  
-Further testing can be added later for UI behavior and additional edge cases.
+Mocking was used to isolate the service layer from the repository and ensure that tests focus only on the logic being tested.
+
+## Test Results
+- Test suites: 2
+- Total tests: 11
+- Passed tests: 11
+- Failed tests: 0
+
+All tests passed successfully.
+
+## Code Coverage
+Code coverage was measured using Jest:
+
+- Statements: 89.18%
+- Branches: 79.31%
+- Functions: 94.44%
+- Lines: 88.88%
+
+## Cyclomatic Complexity (Lizard)
+Cyclomatic Complexity Metrics were calculated using the Lizard tool.
+
+The results show that most functions have very low complexity, mainly CCN 1.  
+The highest value was found in `isValidExpense` with CCN 5.  
+Some functions such as `handleAddExpense`, `groupByCategory`, and `groupByDate` have CCN 2.
+
+The average complexity is 1.2, and no thresholds were exceeded.
+
+This indicates that the code is simple, easy to understand, and maintainable.
+
+## Discussion
+The results show that the most important parts of the application logic are covered by unit tests. The use of classes and dependency injection made it easier to isolate and test functionality.
+
+The addition of mocking improved the test quality by allowing isolation of dependencies and more controlled test scenarios.
+
+During the development process, the code was refactored from a single-file structure into multiple classes to meet the project requirement and improve testability.
+
+Some parts of the application, such as UI/DOM interactions, are not covered by these tests. However, this was not the main focus of the project.
+
+## Conclusion
+The project demonstrates how unit testing can be applied to a JavaScript application using Jest. The achieved coverage, use of mocking, and passing tests indicate that the core functionality works as expected and is reasonably well tested.
