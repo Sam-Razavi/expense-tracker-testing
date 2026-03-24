@@ -5,27 +5,20 @@ Coverage was measured with Jest using the command:
 npx jest --coverage
 
 **Result:** 
-Statements: 26.02%
-Branches: 78.94%
-Functions: 43.47%
-Lines: 23.94%
+Statements: 89.18%
+Branches: 79.31%
+Functions: 94.44%
+Lines: 88.88%
 
 **Comment:**
-The current unit tests mainly cover the pure logic functions in app.js, such as:
+The current automated unit tests focus on the class-based logic in the application, mainly:
 
-validation of expenses
-adding expenses
-removing expenses
-calculating totals
-grouping by category
-grouping by date
+ExpenseRepository
+ExpenseService
+SummaryService
 
-The lower total coverage is expected at this stage because most DOM/UI-related code is not yet covered by tests.
+The high coverage shows that the central business logic of the application is well covered by unit tests. The remaining uncovered lines are mainly related to branches and methods that were not prioritized in the current test iteration.
 
-## Updated observation
-Additional edge-case tests were added for:
-- empty arrays
-- missing title
-- grouping edge cases
 
-The overall coverage percentage did not increase noticeably, because the uncovered part of the file is mainly DOM/UI-related code in `app.js`. The current automated tests focus on pure logic functions, which are the most suitable part for unit testing in this project stage.
+## Conclusion
+The measured coverage is considered good for the scope of this project and supports the conclusion that the most important parts of the application logic have been tested in a systematic way.
